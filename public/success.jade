@@ -1,0 +1,90 @@
+!!! 5
+html(lang='en')
+head
+    meta(charset='utf-8')
+    title Testbed
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(href='/bootstrap/css/bootstrap.css', rel='stylesheet')
+    script(src='/bootstrap/js/jquery-1.9.1.js', type='text/javascript')
+    style
+      body {
+      padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      .form-signin {
+      max-width: 300px;
+      padding: 19px 29px 29px;
+      margin: 0 auto 20px;
+      background-color: #fff;
+      border: 1px solid #e5e5e5;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+      margin-bottom: 10px;
+      }
+      .form-signin input[type="text"]{
+      font-size: 16px;
+      height: auto;
+      margin-bottom: 15px;
+      padding: 7px 9px;
+      }
+      #features{
+      font-size: 16px;
+      height: auto;
+      width: 26%;
+      padding: 5px 5px;
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      }
+    link(href='/bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') Testbed
+          .nav-collapse.collapse
+            ul.nav
+              li.active
+                a(href='#') Home
+              li
+                a(href='#about') About
+              li
+                a(href='/') Logout
+          //
+            /.nav-collapse 
+    .container
+      h1 Welcome, #{name}
+      p
+        | The list of your current additions is shown below.
+        br
+  
+    #features.container
+      script(type='text/javascript')
+        $(document).ready(function(){
+        var featureArray = "#{lof}";
+        featureArray = featureArray.split(',');
+        var divElement = document.getElementById("features");
+        divElement.innerHTML="<ul>"
+        for (var i=0; i<featureArray.length; i++){
+        divElement.innerHTML+="<li> "+featureArray[i]+" </li>";
+        }
+        divElement.innerHTML+="</ul>"
+        });
+    .container
+      h2 Add a new feature
+      form.form-signin(method='POST', action='/success')
+        h2.form-signin-heading New Feature
+        input.input-block-level(type='text', placeholder='Feature', name='featurename')
+        button.btn.btn-large.btn-primary(type='submit') Add
